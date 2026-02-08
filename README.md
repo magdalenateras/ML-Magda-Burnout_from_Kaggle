@@ -47,3 +47,41 @@
 pipeline.fit(X_train, y_train)                    # Imputer+Scaler+Dummies+RF+XGB
 y_pred_proba = pipeline.predict_proba(X_test)[:, 1]  # ROC 1.000
 
+# 🔥 Día 25: Streamlit Dashboard HR LIVE
+
+**Dashboard interactivo** predice burnout individual + análisis empresa:
+
+🔥 localhost:8501
+↳ Manager 32a, 60h/semana → 85% riesgo 🚨 URGENTE
+↳ 2K empleados: 6.4% riesgo promedio
+↳ Gráficos: Histograma + TOP 10 críticos
+
+text
+
+[![Streamlit Dashboard](screenshots/dia25_dashboard.gif)](http://localhost:8501)
+
+**Skills:** `streamlit` `plotly` `pipeline.pkl` **production-ready**
+
+---
+
+## 🎯 Día 26: Pipeline Validado + Feature Importance
+
+**CV 5-Fold:** `ROC 1.000 ± 0.000` 
+
+**TOP 3 Predictores Burnout (RF+XGB Ensemble):**
+
+| # | Variable | Importancia |
+|---|----------|-------------|
+| 1 | **WorkHoursPerWeek** | **39.4%** 🔥 |
+| 2 | SatisfactionLevel | 27.1% |
+| 3 | StressLevel | 25.5% |
+
+**Insights HR:**
+- Horas extras = 39% predicción burnout
+- XGBoost dobla RF en WorkHours (54% vs 25%)
+- RemoteRatio irrelevante (2%)
+
+![Feature Importance](dia26_top_features.png)
+
+**Skills:** `cross_val_score` `StratifiedKFold` `feature_importances_` 
+
